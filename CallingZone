@@ -1,3 +1,5 @@
+/*Set Calling Zone From Country of Residence*/
+
 CASE
     WHEN S.country_of_residence = 'Afghanistan' THEN 'Zone 2'
     WHEN S.country_of_residence = 'Afghanistan ' THEN 'Zone 2'
