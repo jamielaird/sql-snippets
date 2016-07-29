@@ -1,6 +1,6 @@
 /*Date of Last Outbound Call by Student*/
 
-WITH LastCallOut
+WITH LastOutCall
 AS (SELECT
   CC.client_id,
   CC.crms_number,
@@ -13,5 +13,5 @@ AND CC.in_out = 'OUT')
 
 SELECT
   *
-FROM LastCallOut
+FROM LastOutCall
 WHERE seq_rev = 1
