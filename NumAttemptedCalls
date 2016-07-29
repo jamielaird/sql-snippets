@@ -1,0 +1,6 @@
+/*Start of AttemptedCalls Subquery*/ 
+
+AttemptedCalls AS
+    (SELECT     CC.client_id, CC.crms_number, COUNT(CC.id) [NumAttemptedPhoneCalls]
+      FROM          dbo.ZZ_crms_communication CC
+      WHERE      CC.in_out = 'OUT' AND CC.class = 'PHONE')
