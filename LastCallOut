@@ -1,4 +1,4 @@
-/*Date of Last Outbound Call*/
+/*Date of Last Outbound Call by Student*/
 
 WITH LastCallOut
 AS (SELECT
