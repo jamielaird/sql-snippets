@@ -1,4 +1,4 @@
---Number of Attempted Calls by CRM Number
+/*Number of Attempted Calls by Student*/
 
 SELECT
   CC.client_id,
@@ -7,8 +7,6 @@ SELECT
 FROM dbo.ZZ_crms_communication CC
 WHERE CC.in_out = 'OUT'
 AND CC.class = 'PHONE'
-
-AND CC.client_id IN ('HUK_GLASGOWC', 'HUK_KINGSUNI', 'HUK_REGENTS', 'HUK_SWANSEA', 'HUK_USALFORD', 'HUK_WINCHEST', 'HUK05')
 
 GROUP BY CC.client_id,
          CC.crms_number
