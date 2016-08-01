@@ -1,0 +1,6 @@
+																							--		Format					Example
+CONVERT(date,date_created) [Date],						--		yyyy-mm-dd			'2016-01-20'
+CONVERT (varchar,date_created,3) [Date],			--		dd/mm/yy				'20/01/16'
+CONVERT (varchar,date_created,103) [Date],		--		dd/mm/yyyy			'20/01/2016'
+CONVERT (varchar,date_created,107) [Date],		--		Mon dd, yy			'Jan 20, 2016'
+CONVERT (varchar,date_created,112) [Date]			--		yymmdd					'20160120'
