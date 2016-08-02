@@ -1,0 +1,52 @@
+ /* Create the field [master_enquiry_source] and classify each record as 'Email', 'Phone', 'Webform', 'Fairs & Exhibitions' or 'Irregular Lists' */
+  CASE
+    WHEN ST.first_source_tag = '11ten PPC' AND
+    S.client_id = 'HUK_GLASGOWC' THEN '11TENPPC'
+    WHEN CONVERT(date, ST.first_source_tag_date_created) = CONVERT(date, S.date_created) AND
+    ST.first_source_tag LIKE '%gecko%' THEN 'Fairs & Exhibitions'
+    WHEN CONVERT(date, ST.first_source_tag_date_created) = CONVERT(date, S.date_created) AND
+    ST.first_source_tag LIKE '%gekko%' THEN 'Fairs & Exhibitions'
+    WHEN CONVERT(date, ST.first_source_tag_date_created) = CONVERT(date, S.date_created) AND
+    ST.first_source_tag LIKE '%_ff_%' THEN 'Fairs & Exhibitions'
+    WHEN CONVERT(date, ST.first_ssw_tag_date_created) = CONVERT(date, S.date_created) THEN 'Website referral'
+    WHEN CONVERT(date, ST.first_source_tag_date_created) = CONVERT(date, S.date_created) AND
+    ST.first_source_tag LIKE '%_bc_%' THEN 'Irregular Lists'
+    WHEN CONVERT(date, ST.first_source_tag_date_created) = CONVERT(date, S.date_created) AND
+    ST.first_source_tag LIKE '%emt%' THEN 'Enquiry forms'
+    WHEN CONVERT(date, ST.first_source_tag_date_created) = CONVERT(date, S.date_created) AND
+    ST.first_source_tag LIKE '%enq%' THEN 'Irregular Lists'
+    WHEN CONVERT(date, ST.first_source_tag_date_created) = CONVERT(date, S.date_created) AND
+    ST.first_source_tag LIKE '%OF REG%' THEN 'Webform'
+    WHEN CONVERT(date, ST.first_general_tag_date_created) = CONVERT(date, S.date_created) AND
+    ST.first_general_tag LIKE '%AY enquir%' THEN 'Irregular Lists'
+    WHEN CONVERT(date, ST.first_general_tag_date_created) = CONVERT(date, S.date_created) AND
+    ST.first_general_tag LIKE '%AY appli%' THEN 'Irregular Lists'
+    WHEN ST.first_channel_mod = 'Made Offer' AND
+    ABS(DATEDIFF(DAY, S.date_created, ST.first_mo_tag_date_created))
+    < 7 THEN 'Made Offer'
+    WHEN ST.first_channel_mod = 'Prospect List' AND
+    ST.first_source_tag LIKE '%_emt%' THEN 'Enquiry Forms'
+    WHEN CONVERT(date, ST.first_mo_tag_date_created)
+    = CONVERT(date, S.date_created) THEN 'Made Offer'
+    WHEN ST.first_general_tag LIKE '%AY appli%' THEN 'Irregular Lists'
+    WHEN ST.first_channel_mod = 'Prospect List' AND
+    ST.first_source_tag LIKE '%_ff_%' THEN 'Fairs & Exhibitions'
+    WHEN ST.first_channel_mod = 'Prospect List' AND
+    ST.first_source_tag LIKE '%_bc_%' THEN 'Irregular Lists'
+    WHEN ST.first_channel_mod = 'Prospect List' AND
+    FS.student_status = 'Applied' THEN 'AppliedList'
+    WHEN ST.first_channel_mod = 'Prospect List' THEN 'Irregular Lists'
+    WHEN ST.first_comm_class_mod = 'Email' THEN 'Email'
+    WHEN ST.first_comm_class_mod
+    = 'Fax' THEN 'Email'
+    WHEN ST.first_comm_class_mod = 'Letter' THEN 'Email'
+    WHEN ST.first_comm_class_mod = 'SMS' THEN 'Phone'
+    WHEN ST.first_comm_class_mod = 'Web' THEN 'Enquiry Forms'
+    WHEN ST.first_comm_class_mod = 'Unspecified' THEN 'Email'
+    WHEN ST.first_comm_class_mod IS NULL THEN 'Email'
+    WHEN ST.first_channel_mod = 'Prospect List' AND
+    ST.first_mo_source_tag <> 'Unspecified' THEN 'Irregular Lists'
+    WHEN ST.first_channel_mod = 'Made Offer' AND
+    ST.first_mo_source_tag IS NOT NULL THEN 'Made Offer'
+    ELSE ST.first_comm_class_mod
+  END AS master_enquiry_source
