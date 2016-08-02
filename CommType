@@ -1,5 +1,10 @@
-*/Get Comm Type As Email/Phone/Broadcast/*  
-  
+/*Classify Comms as Email, Phone, Broadcast and In or Out*/
+
+SELECT
+	CC.client_id,
+	CC.crms_number,
+	CC.date_opened,
+	CC.date_sent,  
   CASE
     WHEN CC.in_out = 'IN' AND
     CC.class = 'Email' THEN 'Inbound Email'
@@ -21,3 +26,7 @@
     CC.class = 'Phone' THEN 'Outbound Call'
   
   END AS CommType
+
+FROM dbo.ZZ_crms_communication AS CC
+LEFT OUTER JOIN dbo.ZZ_User AS U
+  ON CC.crms_user_id = U.id
