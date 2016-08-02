@@ -1,0 +1,23 @@
+*/Get Comm Type As Email/Phone/Broadcast/*  
+  
+  CASE
+    WHEN CC.in_out = 'IN' AND
+    CC.class = 'Email' THEN 'Inbound Email'
+    
+    WHEN CC.in_out = 'OUT' AND
+    CC.class = 'Email' 
+    AND U.username != 'engage.interface' 
+    THEN 'Outbound Email'
+
+    WHEN CC.in_out = 'OUT' AND
+    CC.class = 'Email' 
+    AND U.username IS NULL
+    THEN 'Broadcast'
+    
+    WHEN CC.in_out = 'IN' AND
+    CC.class = 'Phone' THEN 'Inbound Call'
+    
+    WHEN CC.in_out = 'OUT' AND
+    CC.class = 'Phone' THEN 'Outbound Call'
+  
+  END AS CommType
