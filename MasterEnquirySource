@@ -1,4 +1,4 @@
-  /* Create the field [master_enquiry_source] and classify each record as 'Email', 'Phone', 'Webform', 'Fairs & Exhibitions' or 'Irregular Lists' */
+   /* Create the field [Master Enquiry Source] and classify each record as 'Email', 'Phone', 'Webform', 'Fairs & Exhibitions' or 'Irregular Lists' */
   CASE
     WHEN ST.first_source_tag LIKE '%[_]ff[_]%' THEN 'Fairs & Exhibitions'
     WHEN ST.first_source_tag LIKE '%[_]nn[_]%' OR
@@ -59,4 +59,4 @@
     WHEN ST.first_channel_mod = 'Made Offer' AND
     ST.first_mo_source_tag IS NOT NULL THEN 'Made Offer'
     ELSE ST.first_comm_class_mod
-  END AS master_enquiry_source
+  END AS [Master Enquiry Source] 
