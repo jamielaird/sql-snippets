@@ -1,0 +1,5 @@
+/*Create A Combined Field Showing First to Last Status*/
+
+  CASE
+    WHEN FS.date_modified != LS.date_modified THEN FS.student_status + ' to ' + LS.student_status
+  END AS [Movement]
