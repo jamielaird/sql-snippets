@@ -1,4 +1,4 @@
- /* Create the field [master_prospect_type] and classify all records as 'Enquiry' or 'Made Offer' */
+/* Create the field [Master Prospect Type] and classify all records as 'Enquiry' or 'Made Offer' */
  
   CASE
     WHEN ST.first_source_tag = '11ten PPC' AND
@@ -52,4 +52,4 @@
     WHEN ST.first_channel_mod = 'Made Offer' AND
     ST.first_mo_source_tag IS NOT NULL THEN 'Made Offer'
     ELSE ST.first_comm_class_mod
-  END AS master_prospect_type,
+  END AS [Master Prospect Type]
