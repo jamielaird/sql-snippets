@@ -1,10 +1,7 @@
 /*Classify Comms as Email, Phone, Broadcast and In or Out*/
 
 SELECT
-	CC.client_id,
-	CC.crms_number,
-	CC.date_opened,
-	CC.date_sent,  
+CC.*,
   CASE
     WHEN CC.in_out = 'IN' AND
     CC.class = 'Email' THEN 'Inbound Email'
@@ -17,6 +14,11 @@ SELECT
     WHEN CC.in_out = 'OUT' AND
     CC.class = 'Email' 
     AND U.username IS NULL
+    THEN 'Broadcast'
+    
+    WHEN CC.in_out = 'OUT' AND
+    CC.class = 'Email' 
+    AND U.username = 'engage.interface'
     THEN 'Broadcast'
     
     WHEN CC.in_out = 'IN' AND
