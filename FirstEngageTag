@@ -1,3 +1,5 @@
+/* Identify the first Engage tag assigned to a prospect*/
+
 WITH FirstEngageTag
 AS (SELECT
   STH.client_id,
