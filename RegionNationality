@@ -1,5 +1,4 @@
-  /*Set Region From Nationality*/
-
+--Set region from nationality
 CASE
     WHEN S.nationality = 'Botswana' THEN 'Africa'
     WHEN S.nationality = 'Lesotho' THEN 'Africa'
