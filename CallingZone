@@ -1,4 +1,4 @@
-/*Set Calling Zone From Country of Residence*/
+--set calling zone from country of residence
 
 CASE
     WHEN S.country_of_residence = 'Afghanistan' THEN 'Zone 2'
