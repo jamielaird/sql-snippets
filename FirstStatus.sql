@@ -15,4 +15,3 @@ SELECT
 FROM FirstStatus
 
 WHERE seq = 1
---test comment
