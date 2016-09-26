@@ -4,6 +4,7 @@
     WHEN S.country_of_residence = 'Austria' THEN 'EU'
     WHEN S.country_of_residence = 'Belgium' THEN 'EU'
     WHEN S.country_of_residence = 'Bulgaria' THEN 'EU'
+    WHEN S.country_of_residence = 'Croatia' THEN 'EU'
     WHEN S.country_of_residence = 'Cyprus' THEN 'EU'
     WHEN S.country_of_residence = 'Czech Republic' THEN 'EU'
     WHEN S.country_of_residence = 'Denmark' THEN 'EU'
