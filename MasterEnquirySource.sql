@@ -1,4 +1,4 @@
-   /* Create the field [Master Enquiry Source] and classify each record as 'Email', 'Phone', 'Webform', 'Fairs & Exhibitions' or 'Irregular Lists' */
+--Create the field [Master Enquiry Source] and classify each record as Email, Phone, Webform, Fairs & Exhibitions or Irregular Lists
   CASE
     WHEN ST.first_source_tag LIKE '%[_]ff[_]%' THEN 'Fairs & Exhibitions'
     WHEN ST.first_source_tag LIKE '%[_]nn[_]%' OR
