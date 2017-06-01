@@ -1,0 +1,40 @@
+/* 
+** A simple iterative loop to print out every crm number
+*/
+
+-- Create integer variables
+DECLARE @num_prospects INT
+DECLARE @counter INT
+DECLARE @crms_number INT
+
+-- Set @num_prospects to count of non-dead crm numbers
+SET @num_prospects = (SELECT COUNT(crms_number) FROM ZZ_crms_student WHERE client_id = 'HUK_KCL' AND dead = 0)
+-- Set @counter to 1
+SET @counter = 1
+
+-- Set loop to run for all prospects
+WHILE @counter <= @num_prospects
+
+-- Start of loop
+BEGIN
+
+-- Make @crms_number equal to the row number of the @counter variable
+SET @crms_number = 
+
+(SELECT crms_number FROM (
+
+SELECT 
+	crms_number, 
+	ROW_NUMBER() OVER (ORDER BY crms_number ASC) AS row#
+FROM ZZ_crms_student
+WHERE client_id = 'HUK_KCL'
+	AND dead = 0) prospects WHERE prospects.row# = @counter)
+
+-- Print out the crm number	
+PRINT @crms_number
+
+-- Increment the counter by 1
+SET @counter += 1
+
+END
+-- End of loop
